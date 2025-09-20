@@ -1,0 +1,11 @@
+- name: Facts in ansible
+  hosts: local
+  become: true
+  gather_facts: yes
+
+  tasks:
+    - name: install apache on debian
+      apt:
+        name: apache2
+        state: present
+      when: ansible_os_family == "Debian"

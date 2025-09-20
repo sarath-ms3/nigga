@@ -1,0 +1,7 @@
+- name: using facts
+  hosts: local
+  become: yes
+  tasks:
+    - name: display hostname
+      debug:
+        msg: "this is my os {{ ansible_distribution }}"

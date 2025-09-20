@@ -1,0 +1,16 @@
+- name: Facts in ansible
+  hosts: local
+  become: true
+  tasks:
+    - name: install apache on debian 
+      apt:
+          name: apche2
+          state: present
+      when:  ansible_os_family  == "Debian"
+
+#    - name: install http on redhat
+#     apt:
+#        name: http
+#        state: present
+#        enabled: true
+#        when: ansible_os_family == "Redhat"

@@ -1,0 +1,22 @@
+- name: install apache2
+  hosts: local
+  become: true
+
+  tasks:
+    - name: install nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: copy index.html
+      copy:
+        src: exp3.sh
+        dest: /var/www/html/
+      notify: reload nginx
+
+  handlers:
+    - name: reload nginx
+      service:
+        name: nginx
+        state: started
+        enabled: true

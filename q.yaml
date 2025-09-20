@@ -1,0 +1,10 @@
+- name: Installation Q
+  hosts: local
+  become: true
+  tasks:
+    - name: Install Apache
+      apt:
+        name: apache2
+        msg: "NO enough space"
+        state: present
+      when: ansible_mounts | selectattr('mount', 'equalto', '/') | map(attribute='size_available') | first < 5 * 1024 * 1024 * 1024
